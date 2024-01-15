@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34414.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.NET-Identity-Angular.Server", "ASP.NET-Identity-Angular.Server\ASP.NET-Identity-Angular.Server.csproj", "{7613AE75-B289-4BB9-AD04-81A2FD5E0A11}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "asp.net-identity-angular.client", "asp.net-identity-angular.client\asp.net-identity-angular.client.esproj", "{5E3F1892-A563-493C-BB55-F8CE03C4D8A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7613AE75-B289-4BB9-AD04-81A2FD5E0A11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7613AE75-B289-4BB9-AD04-81A2FD5E0A11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7613AE75-B289-4BB9-AD04-81A2FD5E0A11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7613AE75-B289-4BB9-AD04-81A2FD5E0A11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E3F1892-A563-493C-BB55-F8CE03C4D8A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E3F1892-A563-493C-BB55-F8CE03C4D8A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E3F1892-A563-493C-BB55-F8CE03C4D8A6}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5E3F1892-A563-493C-BB55-F8CE03C4D8A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E3F1892-A563-493C-BB55-F8CE03C4D8A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E3F1892-A563-493C-BB55-F8CE03C4D8A6}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {250EFE01-A4AB-407B-B3BC-22B39B1C8343}
+	EndGlobalSection
+EndGlobal
