@@ -23,7 +23,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/asp.net-identity-angular.client",
+            "outputPath": {
+              "base": "dist/angularfullstack20240115.client",
+              "browser": "",
+              "server": "server",
+              "media": "resources"
+            },
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
