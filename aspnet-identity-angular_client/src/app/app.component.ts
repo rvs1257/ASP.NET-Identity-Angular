@@ -12,5 +12,5 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   }
 
-  title = 'asp.net-identity-angular.client';
+  title = 'aspnet-identity-angular_client';
 }

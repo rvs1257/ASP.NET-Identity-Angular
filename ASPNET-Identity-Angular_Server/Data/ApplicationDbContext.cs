@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace ASP.NET_Identity_Angular.Server.Data;
+namespace ASPNET_Identity_Angular.Server.Data;
 
 public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 {

@@ -1,1 +1,1 @@
-# ASP.NET-Identity-Angular
+# aspnet-identity-angular

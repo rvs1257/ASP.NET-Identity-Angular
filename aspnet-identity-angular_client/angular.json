@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "asp.net-identity-angular.client": {
+    "aspnet-identity-angular_client": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -40,6 +40,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -72,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "asp.net-identity-angular.client:build:production"
+              "buildTarget": "aspnet-identity-angular_client:build:production"
             },
             "development": {
-              "buildTarget": "asp.net-identity-angular.client:build:development"
+              "buildTarget": "aspnet-identity-angular_client:build:development"
             }
           },
           "defaultConfiguration": "development",
@@ -86,7 +87,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "asp.net-identity-angular.client:build"
+            "buildTarget": "aspnet-identity-angular_client:build"
           }
         },
         "test": {

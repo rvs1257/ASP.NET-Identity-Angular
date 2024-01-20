@@ -1,4 +1,4 @@
-using ASP.NET_Identity_Angular.Server.Data;
+using ASPNET_Identity_Angular.Server.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;

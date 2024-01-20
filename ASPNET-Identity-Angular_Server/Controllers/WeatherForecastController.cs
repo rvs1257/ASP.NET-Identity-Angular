@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ASP.NET_Identity_Angular.Server.Controllers;
+namespace ASPNET_Identity_Angular.Server.Controllers;
 
 [Authorize]
 [ApiController]

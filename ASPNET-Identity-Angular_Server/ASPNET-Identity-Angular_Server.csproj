@@ -4,8 +4,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>ASP.NET_Identity_Angular.Server</RootNamespace>
-    <SpaRoot>..\asp.net-identity-angular.client</SpaRoot>
+    <RootNamespace>ASPNET_Identity_Angular_Server</RootNamespace>
+    <SpaRoot>..\aspnet-identity-angular_client</SpaRoot>
     <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:4200</SpaProxyServerUrl>
   </PropertyGroup>
@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\asp.net-identity-angular.client\asp.net-identity-angular.client.esproj">
+    <ProjectReference Include="..\aspnet-identity-angular_client\aspnet-identity-angular_client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>

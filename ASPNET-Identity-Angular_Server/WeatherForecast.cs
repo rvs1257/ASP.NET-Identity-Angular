@@ -1,4 +1,4 @@
-namespace ASP.NET_Identity_Angular.Server;
+namespace ASPNET_Identity_Angular.Server;
 
 public class WeatherForecast
 {
