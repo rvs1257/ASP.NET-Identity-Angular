@@ -1,29 +1,28 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth/services/auth.service';
-import { LoginRequest } from '@auth/types';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  styleUrl: './login.component.scss',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule]
+  imports: [CommonModule, MatButtonModule, MatCardModule, MatDividerModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule]
 })
 export class LoginComponent {
 
   returnUrl: string | undefined = undefined;
 
   loginForm: FormGroup;
-  credentials: LoginRequest = { email: "", password: "" };
   message: string = "";
-
-  @ViewChild('loginForm', { read: NgForm }) loginFormRef!: NgForm;
 
   constructor(
     private authService: AuthService,
@@ -40,13 +39,17 @@ export class LoginComponent {
 
   login() {
     if (this.loginForm.valid) {
-      this.authService.login(this.credentials).subscribe({
+      this.authService.login({
+        email: this.loginForm.get('email')?.value,
+        password: this.loginForm.get('password')?.value
+      }).subscribe({
         next: (response) => {
-          this.loginFormRef.resetForm();
+          this.loginForm.reset();
 
           this.router.navigate([this.returnUrl || '/']);
         },
         error: (error) => {
+          this.message = 'Login failed for the given username and password.';
           console.error('Login failed for the given username and password.', error);
         }
       });
