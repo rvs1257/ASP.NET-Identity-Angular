@@ -18,7 +18,6 @@ interface WeatherForecast {
   imports: [CommonModule, HttpClientModule, MatTableModule]
 })
 export class WeatherForecastComponent {
-  title = 'Weather Forecast';
 
   public forecasts: WeatherForecast[] = [];
 

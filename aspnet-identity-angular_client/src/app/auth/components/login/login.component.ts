@@ -3,7 +3,6 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth/services/auth.service';
 import { LoginRequest } from '@auth/types';
@@ -17,7 +16,7 @@ import { LoginRequest } from '@auth/types';
 })
 export class LoginComponent {
 
-  title: string;
+  returnUrl: string | undefined = undefined;
 
   credentials: LoginRequest = { email: "", password: "" };
   message: string = "";
@@ -25,20 +24,21 @@ export class LoginComponent {
   @ViewChild('loginForm', { read: NgForm }) loginForm!: NgForm;
 
   constructor(
-    private titleService: Title,
     private authService: AuthService,
     private router: Router
     ) {
-    this.title = titleService.getTitle();
+    router.routerState.root.queryParams.subscribe(params => {
+      this.returnUrl = params['returnUrl'];
+    });
   }
 
   login() {
-    this.titleService.setTitle('Login');
 
     this.authService.login(this.credentials).subscribe({
       next: (response) => {
         this.loginForm.resetForm();
-        this.router.navigate(['/user/info']);
+
+        this.router.navigate([ this.returnUrl || '/']);
       },
       error: (error) => {
         console.error('Login failed for the given username and password.', error);

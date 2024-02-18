@@ -11,10 +11,10 @@ export interface UserSessionInfo {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private isAuthenticated = new BehaviorSubject<boolean>(false);
-  private userSessionInfoKey = 'userSessionInfo';
+  static userSessionInfoKey: string = 'userSessionInfo';
 
   constructor(private httpClient: HttpClient) {
-    const sessionInfo = localStorage.getItem(this.userSessionInfoKey);
+    const sessionInfo = localStorage.getItem(AuthService.userSessionInfoKey);
     if (sessionInfo) {
       this.isAuthenticated.next(true);
     }
@@ -38,7 +38,7 @@ export class AuthService {
         const sessionInfo: UserSessionInfo = {
           email: credentials.email
         };
-        localStorage.setItem(this.userSessionInfoKey, JSON.stringify(sessionInfo));
+        localStorage.setItem(AuthService.userSessionInfoKey, JSON.stringify(sessionInfo));
 
         return result;
       })
@@ -57,7 +57,7 @@ export class AuthService {
     return this.httpClient.post('/api/auth/logout', {}).pipe(
       map(result => {
         this.isAuthenticated.next(false);
-        localStorage.removeItem(this.userSessionInfoKey);
+        localStorage.removeItem(AuthService.userSessionInfoKey);
         return result;
       })
     );

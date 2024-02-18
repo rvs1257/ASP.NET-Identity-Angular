@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { AuthService } from '@auth/services/auth.service';
 import { ManageInfoResponse } from '@auth/types';
 
@@ -12,16 +11,13 @@ import { ManageInfoResponse } from '@auth/types';
 })
 export class UserInfoComponent {
 
-  title: string;
   userInfo: ManageInfoResponse = {
     email: '',
     isEmailConfirmed: false
   };
 
   constructor(
-    private titleService: Title,
     private authService: AuthService) {
-    this.title = titleService.getTitle();
   }
 
   ngOnInit(): void {

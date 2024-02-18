@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
 import { AuthService } from '@auth/services/auth.service';
 import { RegisterRequest } from '@auth/types';
 
@@ -11,17 +10,12 @@ import { RegisterRequest } from '@auth/types';
 })
 export class RegisterComponent {
 
-  title: string;
-
   credentials: RegisterRequest = { email: "", password: "", confirmPassword: "" };
   message: string = "";
 
   @ViewChild('loginForm', { read: NgForm }) loginForm!: NgForm;
 
-  constructor(
-    private titleService: Title,
-    private authService: AuthService) {
-    this.title = titleService.getTitle();
+  constructor(private authService: AuthService) {
   }
 
   register() {
