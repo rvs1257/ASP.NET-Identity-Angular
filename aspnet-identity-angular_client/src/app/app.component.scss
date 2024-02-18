@@ -1,10 +1,35 @@
-﻿$toolbar-height: 64px;
+$toolbar-height: 64px;
 $content-width: 1280px;
+
+a.root {
+  color: inherit;
+  text-decoration: inherit;
+}
 
 .mat-toolbar {
   height: $toolbar-height;
   padding: 0 1rem;
   margin: 0 auto;
+
+  .mat-primary {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  .toolbar-spacer {
+    flex: 1 1 auto;
+  }
+
+
+  .button-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .mat-mdc-button-base {
+    margin: 0px 4px;
+  }
 }
 
 .toolbar-content {
@@ -36,15 +61,18 @@ mat-sidenav-content {
 .sidenav {
   width: 200px;
   top: $toolbar-height !important;
-  text-align: center;
+  // text-align: center;
+
+  a {
+    padding: 0px 16px;
+
+    &.active-link {
+      background-color: var(--mat-secondary-color);
+      font-weight: bold;
+    }
+  }
 }
 
 .sidenav .mat-toolbar {
   background: inherit;
-}
-
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
-  z-index: 1;
 }

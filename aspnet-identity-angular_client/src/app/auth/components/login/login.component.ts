@@ -36,7 +36,7 @@ export class LoginComponent {
     this.titleService.setTitle('Login');
 
     this.authService.login(this.credentials).subscribe({
-      next: () => {
+      next: (response) => {
         this.loginForm.resetForm();
         this.router.navigate(['/user/info']);
       },
@@ -45,5 +45,4 @@ export class LoginComponent {
       }
     });
   }
-
 }
