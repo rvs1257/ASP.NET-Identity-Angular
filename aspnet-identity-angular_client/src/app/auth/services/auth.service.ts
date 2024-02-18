@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginRequest, LoginResponse, ManageInfoResponse, RegisterRequest } from '@auth/types';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map, firstValueFrom } from 'rxjs';
 
 export interface UserSessionInfo {
   email: string;
@@ -13,7 +14,7 @@ export class AuthService {
   private isAuthenticated = new BehaviorSubject<boolean>(false);
   static userSessionInfoKey: string = 'userSessionInfo';
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private router: Router) {
     const sessionInfo = localStorage.getItem(AuthService.userSessionInfoKey);
     if (sessionInfo) {
       this.isAuthenticated.next(true);
@@ -23,6 +24,10 @@ export class AuthService {
 
   register(credentials: RegisterRequest) {
     return this.httpClient.post('/api/auth/register', credentials);
+  }
+
+  redirectToLogin() {
+    this.router.navigateByUrl(this.router.createUrlTree(['/login'], { queryParams: { returnUrl: this.router.url } }))
   }
 
   login(credentials: LoginRequest) {

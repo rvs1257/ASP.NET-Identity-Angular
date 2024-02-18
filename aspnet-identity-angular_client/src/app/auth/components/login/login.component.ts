@@ -33,7 +33,6 @@ export class LoginComponent {
   }
 
   login() {
-
     this.authService.login(this.credentials).subscribe({
       next: (response) => {
         this.loginForm.resetForm();

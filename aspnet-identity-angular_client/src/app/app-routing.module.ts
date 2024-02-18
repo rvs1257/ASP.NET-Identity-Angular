@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'login', title: 'Login', component: LoginComponent },
   { path: 'register', title: 'Register', component: RegisterComponent },
   { path: 'user/info', title: 'User Info', component: UserInfoComponent, canActivate: [AuthGuard] },
-  { path: 'weatherforecast', title: 'Weather Forecast', component: WeatherForecastComponent, canActivate: [AuthGuard] },
+  { path: 'weatherforecast', title: 'Weather Forecast', component: WeatherForecastComponent },
   { path: '**', title: 'Not Found', component: PageNotFoundComponent },
 ];
 
