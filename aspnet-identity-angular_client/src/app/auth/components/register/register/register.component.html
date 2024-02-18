@@ -1,8 +1,8 @@
 <div>
 
-  <h2>Login</h2>
+  <h2>Register</h2>
 
-  <form #loginForm="ngForm" (ngSubmit)="login()">
+  <form #loginForm="ngForm" (ngSubmit)="register()">
 
     <mat-form-field>
       <mat-label>Email</mat-label>
@@ -12,9 +12,14 @@
       <mat-label>Password</mat-label>
       <input matInput type="password" id="password" [(ngModel)]="credentials.password" name="password" required>
     </mat-form-field>
+    <mat-form-field>
+      <mat-label>Confirm Password</mat-label>
+      <input matInput type="confirmPassword" id="confirmPassword" [(ngModel)]="credentials.confirmPassword"
+        name="password" required>
+    </mat-form-field>
 
     <div class="field-container">
-      <button mat-raised-button type="submit">Login</button>
+      <button mat-raised-button type="submit">Register</button>
     </div>
 
     @if (message) {

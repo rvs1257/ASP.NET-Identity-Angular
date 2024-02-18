@@ -23,6 +23,7 @@ builder.Services.ConfigureApplicationCookie(configure =>
 });
 
 builder.Services.AddControllers();
+builder.Services.AddHttpLogging(o => { });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -30,9 +31,10 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.MapIdentityApi<User>();
+app.MapGroup("/api/auth")
+    .MapIdentityApi<User>();
 
-app.MapPost("/logout", async (ClaimsPrincipal user, SignInManager<User> signInManager) =>
+app.MapPost("/api/auth/logout", async (ClaimsPrincipal user, SignInManager<User> signInManager) =>
 {
     await signInManager.SignOutAsync();
     return TypedResults.Ok();
@@ -47,6 +49,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
     app.UseDeveloperExceptionPage();
+    app.UseHttpLogging();
 }
 else
 {

@@ -7,7 +7,8 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "standalone": false
+          "standalone": true,
+          "style": "scss"
         },
         "@schematics/angular:directive": {
           "standalone": false
@@ -40,8 +41,9 @@
               "src/assets"
             ],
             "styles": [
+              // "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/custom-theme.scss",
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -103,7 +105,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss"
             ],
             "scripts": [],
             "karmaConfig": "karma.conf.js"

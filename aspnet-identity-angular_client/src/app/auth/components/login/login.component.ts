@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { AuthService } from '@auth/services/auth.service';
 import { LoginRequest } from '@auth/types';
 
@@ -8,43 +13,37 @@ import { LoginRequest } from '@auth/types';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
   standalone: true,
-  imports: [FormsModule]
+  imports: [FormsModule, MatButtonModule, MatFormFieldModule, MatInputModule]
 })
 export class LoginComponent {
-  credentials: LoginRequest = { email: "", password: "" };
 
-  constructor(private authService: AuthService) { }
+  title: string;
+
+  credentials: LoginRequest = { email: "", password: "" };
+  message: string = "";
+
+  @ViewChild('loginForm', { read: NgForm }) loginForm!: NgForm;
+
+  constructor(
+    private titleService: Title,
+    private authService: AuthService,
+    private router: Router
+    ) {
+    this.title = titleService.getTitle();
+  }
 
   login() {
+    this.titleService.setTitle('Login');
+
     this.authService.login(this.credentials).subscribe({
       next: () => {
-        console.log('Registration successful!');
+        this.loginForm.resetForm();
+        this.router.navigate(['/user/info']);
       },
       error: (error) => {
-        console.error('Login failed', error);
+        console.error('Login failed for the given username and password.', error);
       }
     });
   }
 
-  register() {
-    this.authService.register(this.credentials).subscribe({
-      next: () => {
-        console.log('Registration successful!');
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    });
-  }
-
-  logout() {
-    this.authService.logout().subscribe({
-      next: () => {
-        console.log('Logout successful!');
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    });
-  }
 }

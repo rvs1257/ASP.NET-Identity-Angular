@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
 
 interface WeatherForecast {
   date: string;
@@ -14,9 +15,10 @@ interface WeatherForecast {
   templateUrl: './weather-forecast.component.html',
   styleUrl: './weather-forecast.component.css',
   standalone: true,
-  imports: [CommonModule, HttpClientModule]
+  imports: [CommonModule, HttpClientModule, MatTableModule]
 })
 export class WeatherForecastComponent {
+  title = 'Weather Forecast';
 
   public forecasts: WeatherForecast[] = [];
 

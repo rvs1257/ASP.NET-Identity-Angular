@@ -1,7 +1,50 @@
-﻿<nav>
-  <ul>
-    <li><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a></li>
-    <li><a routerLink="/weatherforecast" routerLinkActive="active" ariaCurrentWhenActive="page">Weather Forecast</a></li>
-  </ul>
-</nav>
-<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+
+  <div class="toolbar-content">
+    <div fxShow="true" fxHide.lt-md fxFlex fxLayout="row">
+      <div fxFlex>
+        @if (isHandset$ | async) {
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        }
+        <span>{{title}}</span>
+      </div>
+
+      <div fxFlex fxLayoutAlign="flex-end center">
+        @if (signedIn | async) {
+        <button mat-raised-button type="button" class="text-right" ngClick (click)="logout()" color="primary">
+          Logout
+        </button>
+        }
+        @else {
+        <a mat-raised-button href="login" color="accent">Login</a>
+        <a mat-raised-button href="register" color="accent">Register</a>
+        }
+      </div>
+    </div>
+  </div>
+
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+
+    <mat-nav-list>
+      <a mat-list-item routerLinkActive="active-link" href="/">Home</a>
+      <a mat-list-item routerLinkActive="active-link" href="user/info">User Info</a>
+      <a mat-list-item routerLinkActive="active-link" href="weatherforecast">Weather</a>
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <router-outlet>
+    </router-outlet>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
