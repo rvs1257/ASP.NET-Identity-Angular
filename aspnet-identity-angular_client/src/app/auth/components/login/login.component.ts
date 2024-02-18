@@ -1,5 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -12,36 +13,43 @@ import { LoginRequest } from '@auth/types';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
   standalone: true,
-  imports: [FormsModule, MatButtonModule, MatFormFieldModule, MatInputModule]
+  imports: [CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule]
 })
 export class LoginComponent {
 
   returnUrl: string | undefined = undefined;
 
+  loginForm: FormGroup;
   credentials: LoginRequest = { email: "", password: "" };
   message: string = "";
 
-  @ViewChild('loginForm', { read: NgForm }) loginForm!: NgForm;
+  @ViewChild('loginForm', { read: NgForm }) loginFormRef!: NgForm;
 
   constructor(
     private authService: AuthService,
     private router: Router
-    ) {
+  ) {
     router.routerState.root.queryParams.subscribe(params => {
       this.returnUrl = params['returnUrl'];
+    });
+    this.loginForm = new FormGroup({
+      email: new FormControl('', { nonNullable: true }),
+      password: new FormControl('', { nonNullable: true }),
     });
   }
 
   login() {
-    this.authService.login(this.credentials).subscribe({
-      next: (response) => {
-        this.loginForm.resetForm();
+    if (this.loginForm.valid) {
+      this.authService.login(this.credentials).subscribe({
+        next: (response) => {
+          this.loginFormRef.resetForm();
 
-        this.router.navigate([ this.returnUrl || '/']);
-      },
-      error: (error) => {
-        console.error('Login failed for the given username and password.', error);
-      }
-    });
+          this.router.navigate([this.returnUrl || '/']);
+        },
+        error: (error) => {
+          console.error('Login failed for the given username and password.', error);
+        }
+      });
+    }
   }
 }
